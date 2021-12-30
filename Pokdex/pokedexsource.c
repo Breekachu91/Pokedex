@@ -96,7 +96,7 @@ int main()
 		rattata, raticate, spearow, fearow, pikachu, raichu, sandshrew, sandslash, nidoranf, nidorina, nidoqueen, nidoranm, nidorino, nidoking, clefairy, clefable, vulpix, ninetales, jigglypuff,
 		wigglytuff };
 
-
+	     
 	int size = sizeof(pokeDeck) / sizeof(pokeDeck[0]);
 	int uInput = 0;
 	printf("Navigate your pokedex by entering one of the following:\n");
