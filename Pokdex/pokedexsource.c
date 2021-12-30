@@ -13,7 +13,7 @@ struct pokedex
 	bool encounter;
 
 };
-
+    
 
 // void function for user to search pokedex by pokemon name
 void searchPokeName(struct pokedex arr[], int size);
