@@ -3,16 +3,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <ctype.h>
+#include "PokemonStruct.h"
 
-struct pokedex
-{
-	int kdex;
-	char pokeName[20];
-	char type1[15];
-	char type2[15];
-	bool encounter;
 
-};
     
 
 // void function for user to search pokedex by pokemon name
@@ -48,55 +41,11 @@ int main()
 	printf("====================== WELCOME TO THE POKEDEX ===========================\n");
 	printf("=========================================================================\n");
 
-	//create a pokedex containing pokemon name, type, kdex #
-
-
-	struct pokedex bulbasaur = { 1, "Bulbasaur", "Grass", "Poison", 0 };
-	struct pokedex ivybasaur = { 2, "Ivysaur", "Grass", "Poison", 0 };
-	struct pokedex venasaur = { 3, "Venasaur", "Grass", "Poison", 0 };
-	struct pokedex charmander = { 4, "Charmander", "Fire", 0 };
-	struct pokedex charmeleon = { 5, "Charmeleon", "Fire", 0 };
-	struct pokedex charizard = { 6, "Charizard", "Fire", "Flying", 0 };
-	struct pokedex squirtle = { 7, "Squirtle", "Water", 0 };
-	struct pokedex wartorle = { 8, "Wartortle", "Water", 0 };
-	struct pokedex blastoise = { 9, "Blastoise", "Water", 0 };
-	struct pokedex caterpie = { 10, "Caterpie", "Bug", 0 };
-	struct pokedex metapod = { 11, "Metapod", "Bug", 0 };
-	struct pokedex butterfree = { 12, "Butterfree", "Bug","Flying", 0 };
-	struct pokedex weedle = { 13, "Weedle", "Bug","Poison", 0 };
-	struct pokedex kakuna = { 14, "Kakuna", "Bug","Poison", 0 };
-	struct pokedex beedrill = { 15, "Beedrill", "Bug","Poison", 0 };
-	struct pokedex pidgey = { 16, "Pidgey", "Flying", "Normal", 0 };
-	struct pokedex pidgeotto = { 17, "Pidgeotto", "Flying", "Normal", 0 };
-	struct pokedex pidgeot = { 18, "Pidgeot", "Flying", "Normal", 0 };
-	struct pokedex rattata = { 19, "Rattata", "Normal", 0 };
-	struct pokedex raticate = { 20, "Raticate", "Normal", 0 };
-	struct pokedex spearow = { 21, "Spearow", "Normal", "Flying", 0 };
-	struct pokedex fearow = { 22, "Fearow", "Normal","Flying", 0 };
-	struct pokedex ekans = { 23, "Ekans", "Poison", 0 };
-	struct pokedex arbok = { 24, "Arbok", "Poison", 0 };
-	struct pokedex pikachu = { 25, "Pikachu", "Electric", 0 };
-	struct pokedex raichu = { 26, "Raichu", "Electric", 0 };
-	struct pokedex sandshrew = { 27, "Sandshrew", "Ground", 0 };
-	struct pokedex sandslash = { 28, "Sandslash", "Ground", 0 };
-	struct pokedex nidoranf = { 29, "Nidoran Female", "Poison", 0 };
-	struct pokedex nidorina = { 30, "Nidorina", "Poison", 0 };
-	struct pokedex nidoqueen = { 31, "Nidoqueen", "Poison","Ground", 0 };
-	struct pokedex nidoranm = { 32, "Nidoran Male", "Poison", 0 };
-	struct pokedex nidorino = { 33, "Nidorino", "Poison", 0 };
-	struct pokedex nidoking = { 34, "Nidoking", "Poison", "Ground", 0 };
-	struct pokedex clefairy = { 35, "Clefairy", "Fairy", 0 };
-	struct pokedex clefable = { 36, "Clefable", "FAiry", 0 };
-	struct pokedex vulpix = { 37, "Vulpix", "Fire", 0 };
-	struct pokedex ninetales = { 38, "Ninetales", "Fire", 0 };
-	struct pokedex jigglypuff = { 39, "Jigglypuff", "Normal", "Fairy", 0 };
-	struct pokedex wigglytuff = { 40, "Wigglytuff", "Normal", "Fairy", 0 };
-
+	// struct array containing all pokedex entries. 
 	struct pokedex pokeDeck[151] = { bulbasaur, ivybasaur, venasaur, charmander, charmeleon, charizard, squirtle, wartorle, blastoise, metapod, butterfree, caterpie, pidgey, pidgeotto, pidgeot,
-		rattata, raticate, spearow, fearow, pikachu, raichu, sandshrew, sandslash, nidoranf, nidorina, nidoqueen, nidoranm, nidorino, nidoking, clefairy, clefable, vulpix, ninetales, jigglypuff,
-		wigglytuff };
-
-	     
+	rattata, raticate, spearow, fearow, pikachu, raichu, sandshrew, sandslash, nidoranf, nidorina, nidoqueen, nidoranm, nidorino, nidoking, clefairy, clefable, vulpix, ninetales, jigglypuff,
+	wigglytuff };
+     
 	int size = sizeof(pokeDeck) / sizeof(pokeDeck[0]);
 	int uInput = 0;
 	printf("Navigate your pokedex by entering one of the following:\n");
@@ -121,7 +70,7 @@ int main()
 			searchPokeType(pokeDeck, size);
 			break;
 		}
-		case 4:		//searching pokedex by pokedex number
+		case 4:		
 		{
 
 		}
@@ -140,6 +89,7 @@ int main()
 	return 0;
 }
 
+
 void searchPokeName(struct pokedex arr[], int size)
 {
 	int check = 0;
@@ -148,7 +98,7 @@ void searchPokeName(struct pokedex arr[], int size)
 	scanf_s(" %s", &userPokemon, 20);									// user input
 	for (int i = 0; i < size; i++)										// loop to scan through struct 
 	{
-		if (strcmp(userPokemon, arr[i].pokeName) == 0)					// string compare: if user input matches pokemon name in the pokedex is true
+		if (strstr(arr[i].pokeName, userPokemon) != NULL)					// string compare: if user input matches pokemon name in the pokedex is true
 		{
 			check = 1;
 			char yesNo[4] = "Yes";										// variable to store string for output purposes of the encounter value
@@ -509,3 +459,39 @@ void encountered(struct pokedex arr[], int size)
 
 	} while (temp == 'Y'); 
 }
+
+// temp holding 
+
+
+//
+//void searchPokeName(struct pokedex arr[], int size)
+//{
+//	int check = 0;
+//	char userPokemon[20] = { 0 };										//variable to store user input (pokemon name) 
+//	printf("Enter the name of the pokemon you are searching for: ");
+//	scanf_s(" %s", &userPokemon, 20);									// user input
+//	for (int i = 0; i < size; i++)										// loop to scan through struct 
+//	{
+//		if (strcmp(userPokemon, arr[i].pokeName) == 0)					// string compare: if user input matches pokemon name in the pokedex is true
+//		{
+//			check = 1;
+//			char yesNo[4] = "Yes";										// variable to store string for output purposes of the encounter value
+//			if (arr[i].encounter == 0)									// if encounter value is false: yesNo = "No". When encounter value is output, will display as No, rather than 0. 
+//			{
+//				strcpy_s(yesNo, 4, "No");
+//				printf("\n-------------------------------------");
+//				printf("\nDex #: %d	Name: %s\nType 1: %s	\nType 2: %s	\nEncountered: %s\n", arr[i].kdex, arr[i].pokeName, arr[i].type1, arr[i].type2, yesNo);
+//			}
+//			else														// if encounter value is false: yesNo = "Yes". When encounter value is output, will display as Yes, rather than 1. 
+//			{
+//				strcpy_s(yesNo, 4, "Yes");
+//				printf("\n-------------------------------------");
+//				printf("\nDex #: %d	Name: %s\nType 1: %s	\nType 2: %s	\nEncountered: %s\n", arr[i].kdex, arr[i].pokeName, arr[i].type1, arr[i].type2, yesNo);
+//			}
+//		}
+//	}
+//	if (check != 1)
+//	{
+//		printf("Sorry, no matches were found. Please try again.");
+//	}
+//}

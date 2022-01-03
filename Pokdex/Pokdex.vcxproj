@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="pokedexsource.c" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PokemonStruct.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
